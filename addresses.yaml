@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: addresses
+spec:
+    selector:
+        matchLabels:
+            app: addresses
+    template:
+        metadata:
+            labels:
+                app: addresses
+        spec:
+            containers:
+                - name: addresses
+                  image: abdulovdb/k8s-addresses
+                  resources:
+                      limits:
+                          memory: "128Mi"
+                          cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: addresses
+spec:
+    selector:
+        app: addresses
+    ports:
+        - port: 80
+          targetPort: 4003

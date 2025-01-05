@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: phones
+spec:
+    selector:
+        matchLabels:
+            app: phones
+    template:
+        metadata:
+            labels:
+                app: phones
+        spec:
+            containers:
+                - name: phones
+                  image: abdulovdb/k8s-phones
+                  resources:
+                      limits:
+                          memory: "128Mi"
+                          cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: phones
+spec:
+    selector:
+        app: phones
+    ports:
+        - port: 80
+          targetPort: 4002
