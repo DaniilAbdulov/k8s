@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:21
 
 WORKDIR /app
 
@@ -8,5 +8,5 @@ RUN npm i
 
 COPY . ./
 
-CMD ["sh", "-c", "node index.js"]
+CMD ["node", "index.js"]
 
