@@ -2,16 +2,17 @@ import express from "express";
 
 const app = express();
 const PORT = 4003;
-const url = "http://localhost:4002";
-const k8sUrl = "http://phones";
 
 app.get("/", async (req, res) => {
-    console.log(`addresses`);
     try {
-        const response = await fetch(k8sUrl);
-        const { phone } = await response.json();
+        const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=1');
+        const comments = await response.json();
 
-        res.status(200).send({ address: "Moscow", phone });
+        if (comments?.length) {
+          return  res.status(200).send({ comments });
+        }
+
+        return [];
     } catch (error) {
         console.log(error);
         res.send({ error: `${error}` });

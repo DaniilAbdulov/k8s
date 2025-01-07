@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: addresses
+    name: comments
 spec:
     selector:
         matchLabels:
-            app: addresses
+            app: comments
     template:
         metadata:
             labels:
-                app: addresses
+                app: comments
         spec:
             containers:
-                - name: addresses
-                  image: abdulovdb/k8s-addresses
+                - name: comments
+                  image: abdulovdb/k8s-comments
                   resources:
                       limits:
                           memory: "128Mi"
@@ -22,10 +22,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: addresses
+    name: comments
 spec:
     selector:
-        app: addresses
+        app: comments
     ports:
         - port: 80
           targetPort: 4003

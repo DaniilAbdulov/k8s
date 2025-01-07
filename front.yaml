@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: users
+    name: front
 spec:
     selector:
         matchLabels:
-            app: users
+            app: front
     template:
         metadata:
             labels:
-                app: users
+                app: front
         spec:
             containers:
-                - name: users
-                  image: abdulovdb/k8s-users
+                - name: front
+                  image: abdulovdb/k8s-front
                   resources:
                       limits:
                           memory: "128Mi"
@@ -22,10 +22,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: users
+    name: front
 spec:
     selector:
-        app: users
+        app: front
     ports:
         - port: 80
-          targetPort: 4001
+          targetPort: 3000
