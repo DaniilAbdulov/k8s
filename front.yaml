@@ -16,7 +16,7 @@ spec:
                   image: abdulovdb/k8s-front
                   resources:
                       limits:
-                          memory: "128Mi"
+                          memory: "500Mi"
                           cpu: "500m"
 ---
 apiVersion: v1
